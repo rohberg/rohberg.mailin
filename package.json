@@ -1,0 +1,32 @@
+{
+  "name": "newsschleuder",
+  "version": "1.0.0",
+  "description": "read news, create Plone content",
+  "main": "index.js",
+  "scripts": {
+    "dev:server": "nodemon ./server.js",
+    "dev:mail": "nodemon ./mail_client.js",
+    "dev": "yarn dev:server & yarn dev:mail",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "zhkathmailin"
+  },
+  "keywords": [],
+  "author": "ksuess",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.17.1",
+    "dotenv": "^4.0.0",
+    "express": "^4.15.2",
+    "mail-notifier": "^0.3.0",
+    "moment": "^2.18.1",
+    "mongoose": "^4.9.9",
+    "nodemailer": "^4.0.1",
+    "nodemon": "^1.11.0",
+    "request": "^2.81.0",
+    "twilio": "^3.0.0",
+    "validator": "^7.0.0"
+  }
+}
