@@ -2,6 +2,7 @@ require('dotenv').config({ path: './config.env' });
 
 const notifier = require('mail-notifier');
 const request = require('request');
+const moment = require('moment');
 
 const inbox = {
  user: process.env.IMAP_USER,
@@ -18,35 +19,32 @@ notifier(inbox).on('mail', (mail) => {
        'from': mail.from[0].address,
        'date': mail.receivedDate,
        'title': mail.subject ? mail.subject : 'No Subject',
-       'text': mail.text && mail.text.replace(/\s/g,'').length > 0? mail.text : 'No Message body',
+       'text': mail.html,
+       'description': moment.utc().format("DD.MM.YYYY"),
    };
+   // console.debug(mail)
    console.info("*** New Email Received!");
    console.info(newsletterObject['date'], '|', newsletterObject['title']);
    console.info(newsletterObject['text']);
 
    const options = {
      'uri': process.env.WEBHOOK_TARGET,
+     'json': true,
+     'body': newsletterObject,
      'headers': {
        'User-Agent': 'mail-in client',
-        'Accept': 'application/json',
-        'Accept-Charset': 'utf-8',
-        'Content-Type': 'application/json',
      },
-     json: true,
-     body: newsletterObject,
    }
 
    function callback(err, httpResponse, body){
-        console.debug(err);
-        console.debug('*** httpResponse');
-        console.debug(httpResponse && httpResponse.statusCode);
-        console.debug('');
+        if (err) {
+          console.error(err);
+        }
+        console.info('*** httpResponse');
+        console.info(httpResponse && httpResponse.statusCode);
       }
 
-   request.post(options, callback).auth(process.env.PLONE_LOGIN, process.env.PLONE_PASSWORD);
-   // request.post(options, callback);
-   if (newsletterObject['from']==='newsletter@zh.kath.ch' || newsletterObject['from']==='newsletter@zhkath.ch') {
-     // TODO: WEBHOOK_TARGET auf edgültige Adresse setzen um Plone Content zu erstellen
-     // request.post(options, callback);
+   if (process.env.ALLOWED_SENDERS.split(',').includes(newsletterObject['from'])) {
+     request.post(options, callback).auth(process.env.PLONE_LOGIN, process.env.PLONE_PASSWORD);
    }
 }).start();
