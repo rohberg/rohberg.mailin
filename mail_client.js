@@ -14,17 +14,23 @@ const inbox = {
 };
 
 notifier(inbox).on('mail', (mail) => {
+   var body = ''
+   // body = body + '<p><a id="archivelink" href="' + process.env.ARCHIVE_LINK +'" target="_blank"/>Archiv</a>'
+   // body = body + '<br/><a id="feedlink" href="' + process.env.FEED_LINK +'" target="_blank"/>Feed</a></p>'
+   // body = body + mail.html
+   body = mail.html
    const newsletterObject = {
        '@type': 'zhkathnewsletter',
        'from': mail.from[0].address,
        'date': mail.receivedDate,
        'title': mail.subject ? mail.subject : 'No Subject',
-       'text': mail.html,
+       'text': body,
        'description': moment.utc().format("DD.MM.YYYY"),
+       'beschreibung_themenseite': moment.utc().format("DD.MM.YYYY"),
    };
    // console.debug(mail)
    console.info("*** New Email Received!");
-   console.info(newsletterObject['date'], '|', newsletterObject['title']);
+   console.info(moment.utc().format("DD.MM.YYYY"), '|', newsletterObject['title']);
    console.info(newsletterObject['text']);
 
    const options = {
