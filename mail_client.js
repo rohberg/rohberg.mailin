@@ -15,12 +15,9 @@ const inbox = {
 
 notifier(inbox).on('mail', (mail) => {
    var body = ''
-   // body = body + '<p><a id="archivelink" href="' + process.env.ARCHIVE_LINK +'" target="_blank"/>Archiv</a>'
-   // body = body + '<br/><a id="feedlink" href="' + process.env.FEED_LINK +'" target="_blank"/>Feed</a></p>'
-   // body = body + mail.html
    body = mail.html
    const newsletterObject = {
-       '@type': 'zhkathnewsletter',
+       '@type': process.env.PLONE_CONTENTTYPE,
        'from': mail.from[0].address,
        'date': mail.receivedDate,
        'title': mail.subject ? mail.subject : 'No Subject',

@@ -4,3 +4,5 @@ config.env
 node_modules
 yarn.lock
 .gitattributes
+
+yarn-error.log
