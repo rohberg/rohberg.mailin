@@ -18,10 +18,6 @@ configuration is made in **config.env**. See an example configuration at config.
     PLONE_CONTENTTYPE = 'mycontenttype'
     ALLOWED_SENDERS = 'foo@gmail.com,bar@gmail.com'
 
-
-
-> ** Take care not to show the unsubscribe link. **
-
 ## Plone configuration
 
 1. plone.restapi is installed.
@@ -32,10 +28,10 @@ configuration is made in **config.env**. See an example configuration at config.
 
 ## Credits
 
-thank you Harjyot Singh for inspiration:
+Thank you Harjyot Singh for inspiration:
  https://www.twilio.com/blog/2017/06/how-to-forward-emails-sms-node-js.html
 
-thank you jcreigno for mail-notifier:
+Thank you jcreigno for mail-notifier:
 https://www.npmjs.com/package/mail-notifier
 
 ## Testing
