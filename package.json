@@ -4,14 +4,11 @@
   "description": "read news, create Plone content",
   "main": "index.js",
   "scripts": {
-    "dev:server": "nodemon ./server.js",
-    "dev:mail": "nodemon ./mail_client.js",
-    "dev": "yarn dev:server & yarn dev:mail",
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "mailin": "nodemon ./mail_client.js"
   },
   "repository": {
     "type": "git",
-    "url": "zhkathmailin"
+    "url": "rohberg.mailin"
   },
   "keywords": [],
   "author": "ksuess",
