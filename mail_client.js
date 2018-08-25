@@ -16,6 +16,7 @@ const inbox = {
 notifier(inbox).on('mail', (mail) => {
    var body = ''
    body = mail.html
+   console.debug(mail);
    const newsletterObject = {
        '@type': process.env.PLONE_CONTENTTYPE,
        'from': mail.from[0].address,
@@ -23,7 +24,6 @@ notifier(inbox).on('mail', (mail) => {
        'title': mail.subject ? mail.subject : 'No Subject',
        'text': body,
        'description': moment.utc().format("DD.MM.YYYY"),
-       'beschreibung_themenseite': moment.utc().format("DD.MM.YYYY"),
    };
    // console.debug(mail)
    console.info("*** New Email Received!");

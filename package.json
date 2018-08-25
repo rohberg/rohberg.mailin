@@ -4,7 +4,7 @@
   "description": "read news, create Plone content",
   "main": "index.js",
   "scripts": {
-    "mailin": "nodemon ./mail_client.js"
+    "mailin": "nodemon ./mail_client.js",
   },
   "repository": {
     "type": "git",
@@ -17,12 +17,13 @@
     "body-parser": "^1.17.1",
     "dotenv": "^4.0.0",
     "express": "^4.15.2",
-    "mail-notifier": "^0.3.0",
+    "mail-notifier": "^0.5.0",
+    "mailparser": "^2.3.0",
     "moment": "^2.18.1",
-    "mongoose": "^4.9.9",
-    "nodemailer": "^4.0.1",
-    "nodemon": "^1.11.0",
-    "request": "^2.81.0",
+    "mongoose": "^4.13.15",
+    "nodemailer": "^4.6.8",
+    "nodemon": "^1.18.3",
+    "request": "^2.88.0",
     "validator": "^7.0.0"
   }
 }
