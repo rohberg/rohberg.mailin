@@ -4,7 +4,7 @@
   "description": "read news, create Plone content",
   "main": "index.js",
   "scripts": {
-    "mailin": "nodemon ./mail_client.js",
+    "mailin": "nodemon ./mail_client.js"
   },
   "repository": {
     "type": "git",
