@@ -14,8 +14,8 @@ const inbox = {
 };
 
 notifier(inbox).on('mail', (mail) => {
-   var body = ''
-   body = mail.html
+   var body = '';
+   body = mail.html || mail.text;
    console.debug(mail);
    const newsletterObject = {
        '@type': process.env.PLONE_CONTENTTYPE,
