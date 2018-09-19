@@ -14,40 +14,60 @@ const inbox = {
 };
 
 notifier(inbox).on('mail', (mail) => {
-   var body = '';
-   body = mail.html || mail.text;
-   console.debug(mail);
-   const newsletterObject = {
+   let txt = mail.html || mail.text;
+   if (process.env.PLONE_CONTENTTYPE=='File') {
+       var attachment = null;
+       if (mail.attachments) {
+           attachment1 = mail.attachments[0];
+           let buffer = attachment1['content'];
+           let encoding = attachment1['transferEncoding'];
+           encoding = encoding=='quoted-printable' ? 'base64' : encoding;
+           let data = buffer.toString(encoding);
+           attachment = {
+                "data": data,
+                "encoding": encoding,
+                "filename": attachment1['fileName'],
+                "content-type": attachment1['contentType']
+            };
+       } else {
+           attachment = {
+               "data": "w6TDtsO8",
+               "encoding": "base64",
+               "filename": "dummy.txt",
+               "content-type": "text/plain"}
+       }
+   };
+
+   const bodyoptions = {
        '@type': process.env.PLONE_CONTENTTYPE,
        'from': mail.from[0].address,
        'date': mail.receivedDate,
        'title': mail.subject ? mail.subject : 'No Subject',
-       'text': body,
+       'text': txt,
        'description': moment.utc().format("DD.MM.YYYY"),
    };
-   // console.debug(mail)
-   console.info("*** New Email Received!");
-   console.info(moment.utc().format("DD.MM.YYYY"), '|', newsletterObject['title']);
-   console.info(newsletterObject['text']);
-
+   if (process.env.PLONE_CONTENTTYPE=='File') {
+       bodyoptions['file'] = attachment;
+   };
+   console.info("*** New mail received.");
+   console.info(moment.utc().toLocaleString(), '|', bodyoptions['title']);
    const options = {
      'uri': process.env.WEBHOOK_TARGET,
      'json': true,
-     'body': newsletterObject,
+     'body': bodyoptions,
      'headers': {
        'User-Agent': 'mail-in client',
      },
    }
 
-   function callback(err, httpResponse, body){
+   function callback(err, httpResponse, txt){
         if (err) {
           console.error(err);
         }
-        console.info('*** httpResponse');
-        console.info(httpResponse && httpResponse.statusCode);
+        console.info('status code: ' + httpResponse.statusCode);
       }
 
-   if (process.env.ALLOWED_SENDERS.split(',').includes(newsletterObject['from'])) {
+   if (process.env.ALLOWED_SENDERS.split(',').includes(bodyoptions['from'])) {
      request.post(options, callback).auth(process.env.PLONE_LOGIN, process.env.PLONE_PASSWORD);
    }
 }).start();

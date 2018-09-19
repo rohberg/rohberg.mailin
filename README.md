@@ -1,11 +1,12 @@
 # rohberg.mailin
 
-The service *rohberg.mailin* listens to incoming mails of defined mail accounts and sends a request to Plone website. This creates content in Plone.
+The service *rohberg.mailin* listens to incoming mails of defined mail accounts and sends a request to a Plone website. This creates content in Plone.
 
 ## Use cases
 
 - Create instant content from mobile and work on later on desktop
 - Display newsletters. Do it searchable.
+- Mail reports, bills, snapshots, etc. as attachments to Plone.
 
 Download code to arbitrary location and install with
 
@@ -51,11 +52,3 @@ https://www.npmjs.com/package/mail-notifier
 ## Testing
 
 Add your test email to ALLOWED_SENDERS and send an email from this account to IMAP_USER. This creates a first content item in Plone at WEBHOOK_TARGET.
-
-## More use cases
-
-- post reports as attachment (see TODOs)
-
-## TODO
-
-see TODO.md
