@@ -39,7 +39,12 @@ Configuration is made in *config.env*. See an example configuration at *config.e
 
 mail-notifier https://www.npmjs.com/package/mail-notifier
 
-No dependency on Plone. *config.env* defines the target. This target can be anything.
+In fact there is no dependency on Plone. *config.env* defines the target. This target can be anything.
+
+## Content Tagging
+
+Categorize your content with tags by appending them to the mail subject.  
+Example subject of Mail: "my note #Python #Plone"
 
 ## Credits
 
