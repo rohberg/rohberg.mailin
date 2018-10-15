@@ -16,8 +16,9 @@ const inbox = {
 notifier(inbox).on('mail', (mail) => {
    let txt = mail.html || mail.text;
    let subject = mail.subject ? mail.subject : 'No Title';
-   subject = subject.substring(0, subject.indexOf("#"));
+   subject = subject.substring(0, subject.indexOf("#")) || subject;
    let tags = mail.subject.match( /\#\S*/g );
+   let sender = mail.from[0].address;
 
    if (process.env.PLONE_CONTENTTYPE=='File') {
        var attachment = null;
@@ -50,6 +51,7 @@ notifier(inbox).on('mail', (mail) => {
        'text': txt,
        'description': moment.utc().format("DD.MM.YYYY"),
        'subjects': tags,
+       'contributors': [sender],
    };
    if (process.env.PLONE_CONTENTTYPE=='File') {
        bodyoptions['file'] = attachment;
