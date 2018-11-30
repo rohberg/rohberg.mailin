@@ -27,6 +27,10 @@ notifier(inbox).on('mail', (mail) => {
    } else {
        txt = mail.text
    }
+   let subject = mail.subject ? mail.subject : 'No Title';
+   subject = subject.substring(0, subject.indexOf("#")) || subject;
+   let tags = mail.subject.match( /\#\S*/g );
+   let sender = mail.from[0].address;
    if (process.env.PLONE_CONTENTTYPE=='File') {
        var attachment = null;
        if (mail.attachments) {
@@ -54,9 +58,11 @@ notifier(inbox).on('mail', (mail) => {
        '@type': process.env.PLONE_CONTENTTYPE,
        'from': mail.from[0].address,
        'date': mail.receivedDate,
-       'title': mail.subject ? mail.subject : 'No Subject',
+       'title': subject,
        'text': txt,
        'description': moment.utc().format("DD.MM.YYYY"),
+       'subjects': tags,
+       'contributors': [sender],
    };
    if (process.env.PLONE_CONTENTTYPE=='File') {
        bodyoptions['file'] = attachment;
