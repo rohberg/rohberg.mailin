@@ -3,6 +3,7 @@ require('dotenv').config({ path: './config.env' });
 const notifier = require('mail-notifier');
 const request = require('request');
 const moment = require('moment');
+const parser = require('node-html-parser');
 
 const inbox = {
  user: process.env.IMAP_USER,
@@ -14,7 +15,18 @@ const inbox = {
 };
 
 notifier(inbox).on('mail', (mail) => {
-   let txt = mail.html || mail.text;
+   let txt = '';
+   if (mail.html) {
+       var root = parser.parse(mail.html);
+       var body = root.querySelector('body')
+       if (body) {
+           txt = body.innerHTML;
+       } else {
+           txt = mail.html;
+       }
+   } else {
+       txt = mail.text
+   }
    if (process.env.PLONE_CONTENTTYPE=='File') {
        var attachment = null;
        if (mail.attachments) {
@@ -51,6 +63,7 @@ notifier(inbox).on('mail', (mail) => {
    };
    console.info("*** New mail received.");
    console.info(moment.utc().toLocaleString(), '|', bodyoptions['title']);
+   // console.info(bodyoptions['text'])
    const options = {
      'uri': process.env.WEBHOOK_TARGET,
      'json': true,
@@ -58,6 +71,7 @@ notifier(inbox).on('mail', (mail) => {
      'headers': {
        'User-Agent': 'mail-in client',
      },
+     'encoding': 'utf-8'
    }
 
    function callback(err, httpResponse, txt){
@@ -69,5 +83,6 @@ notifier(inbox).on('mail', (mail) => {
 
    if (process.env.ALLOWED_SENDERS.split(',').includes(bodyoptions['from'])) {
      request.post(options, callback).auth(process.env.PLONE_LOGIN, process.env.PLONE_PASSWORD);
+     console.info("request posted.")
    }
 }).start();
