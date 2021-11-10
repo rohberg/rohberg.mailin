@@ -2,7 +2,6 @@ config.env
 
 .DS_Store
 node_modules
-yarn.lock
 .gitattributes
 
 yarn-error.log
