@@ -14,17 +14,20 @@
   "author": "ksuess",
   "license": "ISC",
   "dependencies": {
-    "body-parser": "^1.19.0",
-    "dotenv": "^10.0.0",
-    "express": "^4.17.1",
+    "body-parser": "^1.20.0",
+    "dotenv": "^16.0.1",
+    "express": "^4.18.1",
     "mail-notifier": "^0.5.0",
-    "mailparser": "^3.4.0",
-    "moment": "^2.29.2",
-    "mongoose": ">=6.0.12",
-    "nodemailer": "^6.7.0",
-    "nodemon": "^2.0.15",
-    "request": "^2.88.0",
-    "validator": "^13.7.0",
-    "node-html-parser": "^5.1.0"
+    "mailparser": "^3.5.0",
+    "moment": "^2.29.4",
+    "mongoose": "^6.5.2",
+    "node-html-parser": "^5.4.1",
+    "nodemailer": "^6.7.8",
+    "nodemon": "^2.0.19",
+    "request": "^2.88.2",
+    "validator": "^13.7.0"
+  },
+  "devDependencies": {
+    "yarn-upgrade-all": "^0.7.1"
   }
 }
