@@ -1,5 +1,5 @@
 {
-  "name": "newsschleuder",
+  "name": "rohberg.mailin",
   "version": "1.0.0",
   "description": "read news, create Plone content",
   "main": "index.js",
