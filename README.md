@@ -25,7 +25,7 @@ Configuration is made in *config.env*. See an example configuration at *config.e
     IMAP_HOST = imap.gmail.com
     IMAP_PORT = 993
     WEBHOOK_TARGET = 'http://code.example.com'
-    PLONE_LOGIN = 'admin'
+    PLONE_LOGIN = 'mailinuser'
     PLONE_PASSWORD = 'secret'
     PLONE_CONTENTTYPE = 'mycontenttype'
     ALLOWED_SENDERS = 'foo@gmail.com,bar@gmail.com'
