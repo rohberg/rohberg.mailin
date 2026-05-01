@@ -1318,7 +1318,7 @@ etag@~1.8.1:
   resolved "https://registry.yarnpkg.com/etag/-/etag-1.8.1.tgz#41ae2eeb65efa62268aebfea83ac7d79299b0887"
   integrity sha512-aIL5Fx7mawVa300al2BnEE4iNvo1qETxLrPI/o05L7z6go7fCw1J6EQmbK4FmJ2AS7kgVF/KEZWufBfdClMcPg==
 
-express@^4.18.1:
+express@^4.19.2:
   version "4.22.1"
   resolved "https://registry.yarnpkg.com/express/-/express-4.22.1.tgz#1de23a09745a4fffdb39247b344bb5eaff382069"
   integrity sha512-F2X8g9P1X7uCPZMA3MVf9wcTqlyNp7IhH5qPCI0izhaOIYXaW9L535tGA3qmjRzpH+bZczqq7hVKxTR4NWnu+g==
@@ -1905,10 +1905,10 @@ nodemailer@8.0.4:
   resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-8.0.4.tgz#b63626585693f37a390ddaecde273da991c76010"
   integrity sha512-k+jf6N8PfQJ0Fe8ZhJlgqU5qJU44Lpvp2yvidH3vp1lPnVQMgi4yEEMPXg5eJS1gFIJTVq1NHBk7Ia9ARdSBdQ==
 
-nodemailer@^6.7.8:
-  version "6.10.1"
-  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-6.10.1.tgz#cbc434c54238f83a51c07eabd04e2b3e832da623"
-  integrity sha512-Z+iLaBGVaSjbIzQ4pX6XV41HrooLsQ10ZWPUehGmuantvzWoDVBnmsdUcOIDM1t+yPor5pDhVlDESgOMEGxhHA==
+nodemailer@^8.0.5:
+  version "8.0.5"
+  resolved "https://registry.yarnpkg.com/nodemailer/-/nodemailer-8.0.5.tgz#2076fb2b5c1ccfe1c88f6e1aa47c0229ea642e0c"
+  integrity sha512-0PF8Yb1yZuQfQbq+5/pZJrtF6WQcjTd5/S4JOHs9PGFxuTqoB/icwuB44pOdURHJbRKX1PPoJZtY7R4VUoCC8w==
 
 nodemon@^2.0.19:
   version "2.0.22"
